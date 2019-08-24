@@ -15,7 +15,7 @@ import money from "@titou10/v-money";
 Vue.use(money, { precision: 4 });
 ```
 
-### B. Use as directive: https://jsfiddle.net/nj3cLoum/2/
+### B. Use as directive:
 
 ```html
 <template>
@@ -24,8 +24,8 @@ Vue.use(money, { precision: 4 });
 
 <script>
   import { money } from "@titou10/v-money";
-
   export default {
+    directives: { money }, 
     data() {
       return {
         price: 123.45,
@@ -38,9 +38,7 @@ Vue.use(money, { precision: 4 });
           unmaskedVar: null 
         }
       };
-    },
-
-    directives: { money }
+    }
   };
 </script>
 ```
@@ -54,9 +52,9 @@ Vue.use(money, { precision: 4 });
 | thousands | false    | String  | ","     | Thousands separator                                    |
 | prefix    | false    | String  | ""      | Currency symbol followed by a Space, like "R\$ "       |
 | suffix    | false    | String  | ""      | Percentage for example: " %"                           |
-| unmaskedVar | false | String | null   | name of a var in data to receive unmasked data |
+| unmaskedVar | false | String | null   | name of an attribute in "data" to receive the unmasked value |
 
 ### References
 
-- https://github.com/luizhenriquerdias/v-money
 - https://github.com/vuejs-tips/v-money/tree/master/src
+- https://github.com/luizhenriquerdias/vuejs-money
