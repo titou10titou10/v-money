@@ -1,4 +1,4 @@
-# v-money Mask for Vue.js
+# v-money mask for Vue.js
 
 ### TD;LR;
 A directive for Vue.js to handle v-money input types tat sets the **masked** and **unmasked** value of an`"input"`component (eg the `"v-text-field"` component from vuetify)
@@ -23,7 +23,7 @@ Vue.use(money, { precision: 4 });
 </template>
 
 <script>
-  import { VMoney } from "@titou10/v-money";
+  import { money } from "@titou10/v-money";
 
   export default {
     data() {
@@ -40,7 +40,7 @@ Vue.use(money, { precision: 4 });
       };
     },
 
-    directives: { money: VMoney }
+    directives: { money }
   };
 </script>
 ```

@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var directive_1 = require("./directive");
-exports.VMoney = directive_1["default"];
+exports.money = directive_1["default"];
 var options_1 = require("./options");
 exports.options = options_1["default"];
 // https://github.com/luizhenriquerdias/v-money

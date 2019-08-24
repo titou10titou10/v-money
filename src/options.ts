@@ -5,4 +5,4 @@ export default {
   decimal: '.',
   precision: 2,
   unmaskedVar: null
-}
+};

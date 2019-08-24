@@ -1,7 +1,7 @@
-import VMoney from './directive';
+import money from './directive';
 import options from './options';
 
-export { VMoney, options };
+export { money, options };
 
 // https://github.com/luizhenriquerdias/v-money
 // https://github.com/vuejs-tips/v-money/tree/master/src
@@ -12,7 +12,7 @@ function install(Vue, globalOptions) {
       options[key] = globalOptions[key];
     });
   }
-  Vue.directive('money', VMoney);
+  Vue.directive('money', money);
 }
 
 export default install;
