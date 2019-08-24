@@ -1,9 +1,9 @@
 import defaults from './options';
 
 function format(input, opt = defaults) {
-  const value = typeof input === 'number'
-                     ? input.toFixed(fixed(opt.precision))
-                     : (input || '0');
+  const value = (!isNaN(input))
+                ? Number(input).toFixed(fixed(opt.precision))
+                : '0';
   const negative = value.indexOf('-') >= 0 ? '-' : '';
 
   const numbers = onlyNumbers(value);
@@ -62,7 +62,8 @@ function setCursor(el, position: number) {
   };
   if (el === document.activeElement) {
     setSelectionRange();
-    setTimeout(setSelectionRange, 1); // Android Fix
+    const timeoutId = setTimeout(setSelectionRange, 1) ; // Android Fix
+    clearTimeout(timeoutId);
   }
 }
 
