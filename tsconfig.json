@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "./dist/",
+    "noImplicitAny": false,
+    "declaration": true,
+    "strict": true
+  }
+}
