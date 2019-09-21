@@ -3,9 +3,9 @@ exports.__esModule = true;
 var options_1 = require("./options");
 function format(input, opt) {
     if (opt === void 0) { opt = options_1["default"]; }
-    var value = typeof input === 'number'
-        ? input.toFixed(fixed(opt.precision))
-        : (input || '0');
+    var value = (!isNaN(input))
+        ? Number(input).toFixed(fixed(opt.precision))
+        : '0';
     var negative = value.indexOf('-') >= 0 ? '-' : '';
     var numbers = onlyNumbers(value);
     var currency = numbersToCurrency(numbers, opt.precision);
@@ -54,7 +54,8 @@ function setCursor(el, position) {
     };
     if (el === document.activeElement) {
         setSelectionRange();
-        setTimeout(setSelectionRange, 1); // Android Fix
+        var timeoutId = setTimeout(setSelectionRange, 1); // Android Fix
+        clearTimeout(timeoutId);
     }
 }
 exports.setCursor = setCursor;

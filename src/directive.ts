@@ -1,11 +1,16 @@
+import { set } from 'lodash';
+
 import { format, unformat, setCursor } from './utils';
 import assign from './assign';
 import opt from './options';
-import { set } from 'lodash';
 
 function run(el , eventName: string, config, vnode) {
-  let positionFromEnd = el.value.length - el.selectionEnd;
-  el.value = format(el.value, config);
+
+  // Handle when initial value is not set
+  const beforeValue = el.value === 'undefined' ? '' : el.value;
+
+  let positionFromEnd = beforeValue.length - el.selectionEnd;
+  el.value = format(beforeValue, config);
   positionFromEnd = el.value.length - positionFromEnd;
   positionFromEnd = Math.max(positionFromEnd, config.prefix.length + 1); // left
   setCursor(el, positionFromEnd);
@@ -17,8 +22,15 @@ function run(el , eventName: string, config, vnode) {
         );
   }
 
-  el.dispatchEvent(new Event(eventName));
+  // Notify listeners only if value changed (ie send an extra 'input' event)
+  if (beforeValue !== el.value) {
+    el.dispatchEvent(new Event(eventName));
+  }
 }
+
+// -------
+// Helpers
+// -------
 
 function getInput(el) {
   if (el.tagName.toLocaleUpperCase() !== 'INPUT') {
@@ -35,11 +47,14 @@ function getConfig(binding) {
   return assign(opt, binding.value);
 }
 
+// -------------------------------
+// Vue.js directive hook functions
+// -------------------------------
 function bind(el, binding, vnode) {
   if (binding.value === false) { return; }
 
-  el = getInput(el);
-  run(el, 'input', getConfig(binding), vnode);
+  const realEl = getInput(el);
+  run(realEl, 'input', getConfig(binding), vnode);
 }
 
 function componentUpdated(el, binding, vnode, oldVnode) {
@@ -50,9 +65,9 @@ function componentUpdated(el, binding, vnode, oldVnode) {
   const oldData = oldVnode.data.props || oldVnode.data.model;
   if (data && data.value === oldData.value) { return; }
 
-  el = getInput(el);
-  el.value = data ? data.value : el.value;
-  run(el, 'input', getConfig(binding), vnode);
+  const realEl = getInput(el);
+  realEl.value = data ? data.value : realEl.value;
+  run(realEl, 'input', getConfig(binding), vnode);
 }
 
 export default { bind, componentUpdated };
