@@ -1,7 +1,17 @@
 # v-money mask for Vue.js
 
-### TD;LR;
-A directive for Vue.js to handle v-money input types tat sets the **masked** and **unmasked** value of an`"input"`component (eg the `"v-text-field"` component from vuetify)
+### TL;DR;
+A`"v-money"`directive for Vue.js that sets the **masked** and **unmasked** value of an`"input"`component (eg the `"v-text-field"` component from vuetify)
+It is a specialized form of a`mask`
+It is based on`@vuejs-tips/v-money`
+
+### Install
+
+```sh
+npm install @titou10/v-money --save
+yarn add @titou10/v-money
+bower install @titou10/v-money --save
+```
 
 ## Usage
 
@@ -19,7 +29,7 @@ Vue.use(money, { precision: 4 });
 
 ```html
 <template>
-  <div><input v-model.lazy="price" v-money="money" /> {{price}}</div>
+  <input v-model.lazy="price" v-money="money" />
 </template>
 
 <script>
@@ -43,7 +53,7 @@ Vue.use(money, { precision: 4 });
 </script>
 ```
 
-## Properties
+### v-money properties
 
 | property  | Required | Type    | Default | Description                                            |
 | --------- | -------- | ------- | ------- | ------------------------------------------------------ |
@@ -54,7 +64,10 @@ Vue.use(money, { precision: 4 });
 | suffix    | false    | String  | ""      | Percentage for example: " %"                           |
 | unmaskedVar | false | String | null   | name of an attribute in "data" to receive the unmasked value |
 
-### References
+### Why this package?
+This package has been created because the`@vuejs-tips/v-money` does not provide a way to get the unmasked value when it is used as a directive
+
+  Most of the credit goes to: 
 
 - https://github.com/vuejs-tips/v-money/tree/master/src
 - https://github.com/luizhenriquerdias/vuejs-money
