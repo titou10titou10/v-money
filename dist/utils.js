@@ -3,9 +3,9 @@ exports.__esModule = true;
 var options_1 = require("./options");
 function format(input, opt) {
     if (opt === void 0) { opt = options_1["default"]; }
-    var value = (!isNaN(input))
+    var value = (typeof input === 'number')
         ? Number(input).toFixed(fixed(opt.precision))
-        : '0';
+        : input;
     var negative = value.indexOf('-') >= 0 ? '-' : '';
     var numbers = onlyNumbers(value);
     var currency = numbersToCurrency(numbers, opt.precision);

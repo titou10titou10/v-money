@@ -1,9 +1,11 @@
 import defaults from './options';
 
 function format(input, opt = defaults) {
-  const value = (!isNaN(input))
-                ? Number(input).toFixed(fixed(opt.precision))
-                : '0';
+
+  const value = (typeof input === 'number')
+              ? Number(input).toFixed(fixed(opt.precision))
+              : input;
+
   const negative = value.indexOf('-') >= 0 ? '-' : '';
 
   const numbers = onlyNumbers(value);
