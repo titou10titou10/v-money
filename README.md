@@ -39,13 +39,14 @@ Vue.use(money, { precision: 4 });
     data() {
       return {
         price: 123.45,
+        rawPrice: null,
         money: {
           decimal: ",",
           thousands: ".",
           prefix: "R$ ",
           suffix: " #",
           precision: 2,
-          unmaskedVar: null 
+          unmaskedVar: "rawPrice" 
         }
       };
     }
