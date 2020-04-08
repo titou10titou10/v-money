@@ -9,6 +9,7 @@ function run(el, eventName, config, vnode) {
     var beforeValue = el.value === 'undefined' ? '' : el.value;
     var positionFromEnd = beforeValue.length - el.selectionEnd;
     el.value = utils_1.format(beforeValue, config);
+    positionFromEnd = Math.max(positionFromEnd, options_1["default"].suffix.length); // right
     positionFromEnd = el.value.length - positionFromEnd;
     positionFromEnd = Math.max(positionFromEnd, config.prefix.length + 1); // left
     utils_1.setCursor(el, positionFromEnd);

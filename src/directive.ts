@@ -11,6 +11,7 @@ function run(el , eventName: string, config, vnode) {
 
   let positionFromEnd = beforeValue.length - el.selectionEnd;
   el.value = format(beforeValue, config);
+  positionFromEnd = Math.max(positionFromEnd, opt.suffix.length); // right
   positionFromEnd = el.value.length - positionFromEnd;
   positionFromEnd = Math.max(positionFromEnd, config.prefix.length + 1); // left
   setCursor(el, positionFromEnd);
