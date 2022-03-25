@@ -1,5 +1,6 @@
 "use strict";
 exports.__esModule = true;
+exports.setCursor = exports.unformat = exports.format = void 0;
 var options_1 = require("./options");
 function format(input, opt) {
     if (opt === void 0) { opt = options_1["default"]; }
@@ -40,7 +41,7 @@ function numbersToCurrency(numbers, precision) {
     return float.toFixed(fixed(precision));
 }
 function addThousandSeparator(integer, separator) {
-    return integer.replace(/(\d)(?=(?:\d{3})+\b)/gm, "$1" + separator);
+    return integer.replace(/(\d)(?=(?:\d{3})+\b)/gm, "$1".concat(separator));
 }
 function joinIntegerAndDecimal(integer, decimal, separator) {
     return decimal ? integer + separator + decimal : integer;
