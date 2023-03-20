@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 function default_1(defaults, extras) {
     defaults = defaults || {};
     extras = extras || {};
@@ -9,4 +9,4 @@ function default_1(defaults, extras) {
         return acc;
     }, {});
 }
-exports["default"] = default_1;
+exports.default = default_1;

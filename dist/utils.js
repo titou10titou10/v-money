@@ -1,9 +1,9 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.setCursor = exports.unformat = exports.format = void 0;
 var options_1 = require("./options");
 function format(input, opt) {
-    if (opt === void 0) { opt = options_1["default"]; }
+    if (opt === void 0) { opt = options_1.default; }
     var value = (typeof input === 'number')
         ? Number(input).toFixed(fixed(opt.precision))
         : input;

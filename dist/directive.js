@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var lodash_1 = require("lodash");
 var utils_1 = require("./utils");
 var assign_1 = require("./assign");
@@ -9,7 +9,7 @@ function run(el, eventName, config, vnode) {
     var beforeValue = el.value === 'undefined' ? '' : el.value;
     var positionFromEnd = beforeValue.length - el.selectionEnd;
     el.value = (0, utils_1.format)(beforeValue, config);
-    positionFromEnd = Math.max(positionFromEnd, options_1["default"].suffix.length); // right
+    positionFromEnd = Math.max(positionFromEnd, options_1.default.suffix.length); // right
     positionFromEnd = el.value.length - positionFromEnd;
     positionFromEnd = Math.max(positionFromEnd, config.prefix.length + 1); // left
     (0, utils_1.setCursor)(el, positionFromEnd);
@@ -38,9 +38,9 @@ function getInput(el) {
 }
 function getConfig(binding) {
     if (!binding.value) {
-        return options_1["default"];
+        return options_1.default;
     }
-    return (0, assign_1["default"])(options_1["default"], binding.value);
+    return (0, assign_1.default)(options_1.default, binding.value);
 }
 // -------------------------------
 // Vue.js directive hook functions
@@ -66,4 +66,4 @@ function componentUpdated(el, binding, vnode, oldVnode) {
     realEl.value = data ? data.value : realEl.value;
     run(realEl, 'input', getConfig(binding), vnode);
 }
-exports["default"] = { bind: bind, componentUpdated: componentUpdated };
+exports.default = { bind: bind, componentUpdated: componentUpdated };
