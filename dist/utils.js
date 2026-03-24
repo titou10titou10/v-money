@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setCursor = exports.unformat = exports.format = void 0;
+exports.format = format;
+exports.unformat = unformat;
+exports.setCursor = setCursor;
 var options_1 = require("./options");
 function format(input, opt) {
     if (opt === void 0) { opt = options_1.default; }
@@ -18,14 +20,12 @@ function format(input, opt) {
         joinIntegerAndDecimal(integer, decimal, opt.decimal) +
         opt.suffix);
 }
-exports.format = format;
 function unformat(input, precision) {
     var negative = input.indexOf('-') >= 0 ? -1 : 1;
     var numbers = onlyNumbers(input);
     var currency = numbersToCurrency(numbers, precision);
     return parseFloat(currency) * negative;
 }
-exports.unformat = unformat;
 function onlyNumbers(input) {
     return toStr(input).replace(/\D+/g, '') || '0';
 }
@@ -59,4 +59,3 @@ function setCursor(el, position) {
         clearTimeout(timeoutId);
     }
 }
-exports.setCursor = setCursor;
