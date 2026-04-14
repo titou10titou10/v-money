@@ -1,13 +1,16 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var lodash_1 = require("lodash");
-var utils_1 = require("./utils");
-var assign_1 = require("./assign");
-var options_1 = require("./options");
+const lodash_1 = require("lodash");
+const utils_1 = require("./utils");
+const assign_1 = __importDefault(require("./assign"));
+const options_1 = __importDefault(require("./options"));
 function run(el, eventName, config, vnode) {
     // Handle when initial value is not set
-    var beforeValue = el.value === 'undefined' ? '' : el.value;
-    var positionFromEnd = beforeValue.length - el.selectionEnd;
+    const beforeValue = el.value === 'undefined' ? '' : el.value;
+    let positionFromEnd = beforeValue.length - el.selectionEnd;
     el.value = (0, utils_1.format)(beforeValue, config);
     positionFromEnd = Math.max(positionFromEnd, options_1.default.suffix.length); // right
     positionFromEnd = el.value.length - positionFromEnd;
@@ -26,9 +29,9 @@ function run(el, eventName, config, vnode) {
 // -------
 function getInput(el) {
     if (el.tagName.toLocaleUpperCase() !== 'INPUT') {
-        var els = el.getElementsByTagName('input');
+        const els = el.getElementsByTagName('input');
         if (els.length !== 1) {
-            throw new Error("v-money requires 1 input, found ".concat(els.length));
+            throw new Error(`v-money requires 1 input, found ${els.length}`);
         }
         else {
             el = els[0];
@@ -49,7 +52,7 @@ function bind(el, binding, vnode) {
     if (binding.value === false) {
         return;
     }
-    var realEl = getInput(el);
+    const realEl = getInput(el);
     run(realEl, 'input', getConfig(binding), vnode);
 }
 function componentUpdated(el, binding, vnode, oldVnode) {
@@ -57,13 +60,13 @@ function componentUpdated(el, binding, vnode, oldVnode) {
         return;
     }
     // Prevent firing endless events
-    var data = vnode.data.props || vnode.data.model;
-    var oldData = oldVnode.data.props || oldVnode.data.model;
+    const data = vnode.data.props || vnode.data.model;
+    const oldData = oldVnode.data.props || oldVnode.data.model;
     if (data && data.value === oldData.value) {
         return;
     }
-    var realEl = getInput(el);
+    const realEl = getInput(el);
     realEl.value = data ? data.value : realEl.value;
     run(realEl, 'input', getConfig(binding), vnode);
 }
-exports.default = { bind: bind, componentUpdated: componentUpdated };
+exports.default = { bind, componentUpdated };

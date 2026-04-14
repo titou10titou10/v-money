@@ -1,9 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.options = exports.money = void 0;
-var directive_1 = require("./directive");
+const directive_1 = __importDefault(require("./directive"));
 exports.money = directive_1.default;
-var options_1 = require("./options");
+const options_1 = __importDefault(require("./options"));
 exports.options = options_1.default;
 // https://github.com/luizhenriquerdias/v-money
 // https://github.com/vuejs-tips/v-money/tree/master/src
